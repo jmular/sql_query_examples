@@ -3,7 +3,7 @@ This repository includes tutorials and examples questions I made to help others 
 
 Tutorials and Walkthrough Includes:
 
-1.uploading_.csv_file_into_BigQuery
+1. uploading_.csv_file_into_BigQuery
     - Information on how to upload a .csv file into Google's BigQuery
   
 2. sql_basic_query_movie_data
