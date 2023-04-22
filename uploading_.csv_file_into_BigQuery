@@ -1,0 +1,22 @@
+/* Uploading a .csv file into BigQuery
+
+1. Open the BigQuery console and click which project you want to upload the data into
+  + For the purpose of following the other tutorial I chose the generated project "____"
+  
+2. Click the Actions Icon (three dots in a line) on the left side of where your project name is
+  + Under that click "Create Dataset"
+
+3. On the new screen label the Dataset ID and put data location as default
+  + If you are working with the movie_dataset_example note your DatasetID as "movie_data"
+  + Click the blue button that says "CREATE DATASET"
+  
+4.Exand your project and then click on your dataset you just created (movie_data)
+
+5. Click the blue plus (+) icon on the top right, to "Create Table"
+  + This is where you upload your file using the Upload feature, hitting Browse to find where your file is.
+      + For best practice move your data set out of your download folder into your files
+  + Choose CSV from the file format drop down
+  + Under Destination name your Table name (note this as "movies")
+  + Click Auto detect checkbox for the Schema
+  + Click the blue button "Create table"
+      + You'll see "movies" under your "movie_data" dataset */
