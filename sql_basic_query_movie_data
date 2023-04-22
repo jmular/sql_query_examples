@@ -1,0 +1,81 @@
+#SQL Basic Search Query Walkthrough
+/*Topics Covered: SELECT, FROM, WHERE, AND, OR, GROUP BY, ORDER BY*/
+
+#Upload your data set that you are working with into BigQuery, see the accompanying file of movie_dataset_example
+
+/*To look at all the all of the data within a dataset use the SELECT * feature, all select queries include a FROM feature*/
+
+SELECT  *
+  FROM movie_data.movies 
+    /*note if you recieve an error message, copy the full path of where it's stored in your BigQuery `divine-bruin-381522.movie_data.movies`*/
+  LIMIT 1000 #note we're using this to keep our processing time small, to see the full data set take this portion out#
+
+/*Say you want to filter to look for a specific condition use the WHERE function, for the movies data set we'll look for comedy movies*/
+
+SELECT  *
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy' #note this is case sensitive function, be sure to look at your data
+  LIMIT 1000
+
+  /*WHERE statements can compile with using the AND feature
+Say you only want a movie released from 2016 an onward, to do this you can ADD feature filtering the release date*/
+
+SELECT  *
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy'
+    AND Release_Date > 2016-01-01
+  LIMIT 1000
+
+/*Now that's a lot of information you may not need, for example this data set you may only want to know the movie title and when it was released, to do this change the selection in the SELECT area to include only the column names seperated out by a comma
+* include all columns within the dataset */
+
+SELECT  Movie_Title, Release_Date
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy'
+  LIMIT 1000
+
+/*The WHERE feature can also include multiple possibilities in the form of OR running a query with OR*/
+SELECT  Movie_Title, Release_Date, Genre
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy' 
+    OR Genre= 'Crime'
+  LIMIT 1000
+/*this leads us to the query of including movies that are either noted as comedies or as crime movies*/
+
+
+/*This is a bit of a messy list, say you want this information in an orderly set up by release date by using ORDER BY*/
+SELECT  Movie_Title, Release_Date
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy'
+  ORDER BY
+    Release_Date #note that SQL will automatically order by ascending order, to get descending order place DESC after#
+  LIMIT 1000
+
+/*Say you want to see all the information but you want to see them in groups, use the function GROUP BY */
+SELECT  Movie_Title, Release_Date, Genre
+  FROM
+    movie_data.movies 
+  GROUP BY
+    Genre,
+  LIMIT 1000
+
+/*GROUP BY can also be used within multiple columns, for example you want to view the movies grouped by directors within the genre group*/
+SELECT  Movie_Title, Release_Date
+  FROM
+    movie_data.movies 
+  WHERE
+    Genre= 'Comedy' OR 'Crime'
+  ORDER BY
+    Genre,
+    Director__1_ #This SQL query will divide the GENRE groups further using the Director__1_ column
+  LIMIT 1000
