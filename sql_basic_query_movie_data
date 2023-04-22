@@ -1,7 +1,7 @@
 #SQL Basic Search Query Walkthrough
 /*Topics Covered: SELECT, FROM, WHERE, AND, OR, GROUP BY, ORDER BY*/
 
-#Upload your data set that you are working with into BigQuery, see the accompanying file of movie_dataset_example
+#Upload your data set that you are working with into BigQuery, see the accompanying file of movie_dataset_example.csv
 
 /*To look at all the all of the data within a dataset use the SELECT * feature, all select queries include a FROM feature*/
 
