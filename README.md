@@ -9,5 +9,9 @@ Tutorials and Walkthrough Includes:
 2. sql_basic_query_movie_data
     - Topics covered: SELECT, FROM, WHERE, AND, OR, GROUP BY, ORDER BY
 
+3. sql_cleaning_up_within_query
+    - Topics Covered: CAST(), CONCAT(), and COALESCE() functions
+
 Datasets used:
-  - movies_dataset_example.csv (from Google Analytics practice dataset)
+  - movies_dataset_example.csv (from Google Analytics practice datasets)
+  - laurens_furniture_store_transaction_dataset.csv (from Google Analytics practice datasets)
