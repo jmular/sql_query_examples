@@ -40,7 +40,8 @@ SELECT
  FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
  WHERE
   date BETWEEN '2020-12-01' AND '2020-12-31'
-  
+ 
+#Note if you find yourself having some difficulties with error be sure to double check your FROM connection as well as making sure the commas are in the proper place in your select statement
   
 **Part 2: CONCAT()**
 
