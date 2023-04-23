@@ -1,0 +1,72 @@
+#SQL Example of cleaning up data wthin a query
+/*Topics Covered: CAST(), CONCAT(), and COALESCE() functions
+
+For this we will be using the Lauren's furniture purchase dataset (laurens_furniture_store_transaction_dataset.csv) using BigQuery
+If you need a reminder for uploading your documents please see the (uploading_.csv_file_into_BigQuery) walkthrough
+
+**Part 1: CAST()**
+
+Problem Question 1: The furniture store manager has asked us to find all of the purchase prices of Lauren's furnitue and put them in descending order
+
+#If you did a basic search on purchase_price in descending order within this set it would not report the proper information as the database doesn't recognize the values as numbers
+
+#So to get around that we can typecast within our query to change the data type (currently as a string to a float)
+#Float is a number that contains a deimal
+
+SELECT 
+  CAST(purchase_price AS FLOAT64) #the CAST function changes the data type
+  #BigQuery stores numbers in a 64 bit system so using the FLOAT64 allows the data type to change
+ FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
+ ORDER BY CAST(purchase_price AS FLOAT64) DESC
+
+#Now this gives us the query we want, note for other problems we will most likely be looking for a multitude of items within our SELECT function but this is just to get an example of CAST()
+
+Problem Question 2: The furniture store owner has asked to look at purchases that occurred during the sales promotion period in December. Write a SQL query that will pull date and purchase_price between December 1st, 2020 and December 31st, 2020.
+
+#Note if you ran the query like below the date column would look odd and wordy
+/*SELECT 
+  date,
+  purchase_price
+ FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
+ WHERE
+  date BETWEEN '2020-12-01' AND '2020-12-31'*/
+
+#This is because the database recognizes the date field as datetime, SQL will still recognize the date part of the date time but this can be confusing and busy for someone reading reports
+
+#We can use the CAST() function again to remedy this
+SELECT 
+  CAST(date AS date) AS date_only #Note I am adding an alias to make this more easily recognizeable
+  purchase_price,
+ FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
+ WHERE
+  date BETWEEN '2020-12-01' AND '2020-12-31'
+  
+  
+**Part 2: CONCAT()**
+
+#CONCAT() #function that adds strings together to create new text strings that can be used as unique keys
+
+Problem Question 3: The store owner wants to know if customers prefer couches in certain colors and what those colors are to be able to manage his store inventory. He would like a list of purchase information where the product code and color code are in the same cell.
+
+SELECT 
+  CONCAT(product_code,product_color) AS new_product_code
+ FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
+ WHERE
+ product= 'couch'
+
+ #With this he can now see what are the most popular color choices are for couches
+
+**Part 3: COALESCE()**
+
+#COALESCE() function can be used to return non-null values in a list
+#Reminder Null values are missing values, NOT 0 values
+
+Problem Question 4: Make a list of all products that were sold. Some of these products do not have a proper product name and we would like to put the product code in that space instead
+
+SELECT 
+  COALESCE(product, product_code) AS product_info
+ FROM `divine-bruin-381522.lauren_customer_data.lauren_furniture_data` 
+
+#Note that the coalesce feature will go through each column in order to fill the information, right now it will search through the product column to produce a value and for those entries where this is no data for the product column it will then go to product_code
+
+#This search and enter feature can go on for as many columns as you put in your COALESCE() function but be sure your order is what you want
